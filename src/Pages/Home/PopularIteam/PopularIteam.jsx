@@ -18,12 +18,12 @@ const PopularIteam = () => {
   }, []);
 
   return (
-    <section>
+    <section className="mb-10">
       <SectionTitle
         heading="order now"
         subheading="Popular Items"
       ></SectionTitle>
-      <div>
+      <div className="grid md:grid-cols-2 gap-10">
         {menu.map((iteam) => (
           <MenuIteam key={iteam._id} iteam={iteam}></MenuIteam>
         ))}
