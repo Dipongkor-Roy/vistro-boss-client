@@ -19,7 +19,9 @@
     "react-parallax": "^3.5.1",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.21.2",
+    "react-tabs": "^6.0.2",
     "sort-by": "^1.2.0",
+    "styled-components": "^4.4.1",
     "swiper": "^11.0.5"
   },
   "devDependencies": {
