@@ -12,6 +12,9 @@ const NavBar = () => {
       <li>
         <Link to='/order/salad'><a>Order</a></Link>
       </li>
+      <li>
+        <Link to='/logIn'><a>Login</a></Link>
+      </li>
     </>
   );
   return (
