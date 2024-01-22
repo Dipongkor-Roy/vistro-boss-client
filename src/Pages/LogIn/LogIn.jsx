@@ -5,6 +5,7 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthCont";
+import { Link } from "react-router-dom";
 
 const LogIn = () => {
   const user_captcha = useRef(null);
@@ -104,10 +105,12 @@ const LogIn = () => {
                 className="btn btn-primary"
                 type="submit"
                 value={"Log In"}
-              ></input>
+            ></input>
             </div>
+            <p className="text-center"><small>New Here? <Link to='/signUp'><p className="text-blue-400" >Create Account</p></Link></small></p>
           </form>
         </div>
+       
       </div>
     </div>
   );

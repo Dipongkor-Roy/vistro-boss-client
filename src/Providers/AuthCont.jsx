@@ -5,10 +5,11 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import app from "../Firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 
-const auth = getAuth();
+const auth = getAuth(app);
 
 const AuthCont = ({ children }) => {
   const [user, setUser] = useState(null);
