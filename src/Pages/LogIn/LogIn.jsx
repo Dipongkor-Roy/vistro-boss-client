@@ -6,6 +6,7 @@ import {
 } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthCont";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const LogIn = () => {
   const user_captcha = useRef(null);
@@ -39,7 +40,11 @@ const LogIn = () => {
     }
   };
   return (
+    
     <div className="hero min-h-screen bg-base-200">
+       <Helmet>
+        <title>Vistro-Boss | LogIn</title>
+      </Helmet>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center w-1/2 lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
