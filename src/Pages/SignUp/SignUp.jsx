@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form"
+import { useContext } from "react";
+import  { AuthContext } from "../../Providers/AuthCont";
 
 
 const SignUp = () => {
+  const {signUp}=useContext(AuthContext)
   const {
     register,
     handleSubmit,
@@ -12,6 +15,11 @@ const SignUp = () => {
 
   const onSubmit = (data) => {
     console.log(data)
+    signUp(data.email,data.password)
+    .then(result=>{
+      const logedUser=result.user;
+      console.log(logedUser);
+    })
   }
     return (
         <div className="hero min-h-screen bg-base-200">
