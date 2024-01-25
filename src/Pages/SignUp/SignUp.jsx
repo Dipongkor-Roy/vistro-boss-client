@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import { useContext } from "react";
 import  { AuthContext } from "../../Providers/AuthCont";
+import { Helmet } from "react-helmet-async";
 
 
 const SignUp = () => {
@@ -23,6 +24,9 @@ const SignUp = () => {
   }
     return (
         <div className="hero min-h-screen bg-base-200">
+           <Helmet>
+        <title>Vistro-Boss | SignUp</title>
+      </Helmet>
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
       <h1 className="text-5xl font-bold">Sign Up now!</h1>
@@ -58,7 +62,7 @@ const SignUp = () => {
         <div className="form-control mt-6">
           <button type="submit" className="btn btn-primary">Sign Up</button>
         </div>
-        <p className="text-center"><small>Already Have an Account? <Link to='/signUp'><p className="text-blue-400" >LogIn</p></Link></small></p>
+        <p className="text-center"><small>Already Have an Account? <Link to='/logIn'><p className="text-blue-400" >LogIn</p></Link></small></p>
       </form>
     </div>
   </div>
