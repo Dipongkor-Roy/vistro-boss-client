@@ -7,6 +7,7 @@ import {
 import { AuthContext } from "../../Providers/AuthCont";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
  
@@ -26,6 +27,19 @@ const LogIn = () => {
     .then(result=>{
       const user=result.user;
       console.log(user)
+      Swal.fire({
+        title: "Log In Sucessful.",
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff url(/images/trees.png)",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://media.tenor.com/9zmtHZ0tIjkAAAAi/nyancat-rainbow-cat.gif")
+          left top
+          no-repeat
+        `
+      });
     })
   };
   const handleCaptcha = (e) => {
