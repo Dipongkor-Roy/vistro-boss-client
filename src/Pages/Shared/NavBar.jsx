@@ -23,7 +23,9 @@ const NavBar = () => {
       </li>
      
       {
-        user? <> <li onClick={handleLogOut}><a >LogOut</a></li></> :
+        user? <> 
+        <a>{user?.displayName}</a>
+        <li onClick={handleLogOut}><a >LogOut</a></li></> :
         <>
          <li>
         <Link to='/logIn'><a>Login</a></Link>
@@ -59,7 +61,7 @@ const NavBar = () => {
               {navOptions}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Vistro Boss</a>
+          <Link to='/'><a className="btn btn-ghost text-xl">Vistro Boss</a></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
