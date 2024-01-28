@@ -1,6 +1,8 @@
 const MenuCard = ({ item }) => {
   const { name, image, price, recipe } = item;
-
+const handleAddtoCart=(iteam)=>{
+console.log(iteam);
+}
   return (
     <div className="card w-72 bg-base-100 shadow-xl  ">
       <figure>
@@ -17,7 +19,7 @@ const MenuCard = ({ item }) => {
         
         <p>{recipe}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Add to Card</button>
+          <button onClick={()=>handleAddtoCart(item)} className="btn btn-primary">Add to Card</button>
         </div>
       </div>
     </div>

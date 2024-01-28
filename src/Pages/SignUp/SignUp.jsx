@@ -28,7 +28,7 @@ const SignUp = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Your work has been saved",
+          title: "User Created Sucessfully",
           showConfirmButton: false,
           timer: 1500
         });
