@@ -8,6 +8,7 @@ import { AuthContext } from "../../Providers/AuthCont";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import GoogleLogIn from "../../Components/SocialLogIn/GoogleLogIn";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -120,13 +121,15 @@ const LogIn = () => {
             {/* todo: add disable again */}
             <div className="form-control mt-6">
               <input
-                disabled={false}
+                disabled={disable}
                 className="btn btn-primary"
                 type="submit"
                 value={"Log In"}
             ></input>
             </div>
             <p className="text-center"><small>New Here? <Link to='/signUp'><p className="text-blue-400" >Create Account</p></Link></small></p>
+            <div className="divider">OR</div>
+             <GoogleLogIn/>
           </form>
         </div>
        
