@@ -5,10 +5,11 @@ import { AuthContext } from "../../Providers/AuthCont";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import { FaGoogle } from "react-icons/fa";
 
 const SignUp = () => {
   const axiosPublic = UseAxiosPublic();
-  const { signUp, updateUserProfile } = useContext(AuthContext);
+  const { signUp, updateUserProfile, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
@@ -44,6 +45,11 @@ const SignUp = () => {
           navigate("/");
         })
         .catch((error) => console.error(error));
+    });
+  };
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((result) => {
+      console.log(result.user);
     });
   };
   return (
@@ -146,6 +152,12 @@ const SignUp = () => {
                   <p className="text-blue-400">LogIn</p>
                 </Link>
               </small>
+              {/* googleSignin */}
+              <div className="divider ">OR</div>
+              <button onClick={handleGoogleSignIn} className="btn">
+                <FaGoogle />
+                Google
+              </button>
             </p>
           </form>
         </div>
