@@ -9,12 +9,16 @@ const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get("/users",{
+        headers:{
+          authorization:`Bearer ${localStorage.getItem('access-token')}`
+        }
+      });
       return res.data;
     },
   });
   const handleDeleteUser = (user) => {
-    Swal.fire({
+    Swal.fire({ 
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
