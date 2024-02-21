@@ -65,7 +65,7 @@ localStorage.removeItem('access-token');
     return () => {
       return unSubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
   const authInfo = { user, loading, logIn,googleSignIn, signUp,logOut,updateUserProfile};
   return (
     

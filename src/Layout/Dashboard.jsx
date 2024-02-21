@@ -1,12 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaCalendar, FaCartPlus, FaHamburger, FaHome, FaList, FaShoppingCart, FaWallet } from "react-icons/fa";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 
 const Dashboard = () => {
   const [cart]=useCart();
   //todo: admin role setup
-  const isAdmin=true;
+  const [isAdmin]=useAdmin();
     return (
         <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
