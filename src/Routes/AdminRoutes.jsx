@@ -2,8 +2,8 @@ import { Navigate } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import useAuth from "../Hooks/useAuth";
 
-const AdminRoutes = (children) => {
-  const [user, loading] = useAuth();
+const AdminRoutes = ({children}) => {
+  const {user, loading} = useAuth();
   const [isAdmin, adminLoadingPending] = useAdmin();
 
   if (loading || adminLoadingPending) { //or admin loading
