@@ -40,11 +40,13 @@ export const router = createBrowserRouter([
     path:'dashboard',
     element:<PrivateRoutes><Dashboard/></PrivateRoutes>,
     children:[
+      //normal user
       {
         path:'mycart',
         element:<MyCart/>
       },
-      //all users
+      
+      //admin only
       {
         path:'users',
         element:<AllUsers/>
