@@ -4,6 +4,7 @@ import useMenu from "../../../Hooks/useMenu/useMenu";
 import Swal from "sweetalert2";
 
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import { Link } from "react-router-dom";
 const ManageItems = () => {
   const [menu,,refetch] = useMenu();
 const axiosSecure=UseAxiosSecure();
@@ -19,7 +20,10 @@ const axiosSecure=UseAxiosSecure();
       confirmButtonText: "Yes, delete it!"
     }).then(async(result) => {
       if (result.isConfirmed) {
+
         const res=await axiosSecure.delete(`/menu/${item._id}`);
+        // console.log(res.data)
+        
         if(res.data.deletedCount>0){
           refetch();
           Swal.fire({
@@ -74,9 +78,9 @@ const axiosSecure=UseAxiosSecure();
                 <td>{item.name}</td>
                 <td className="text-right">{item.price}</td>
                 <th>
-                  <button className="btn  btn-ghost btn-md bg-orange-400 text-xl text-white">
+                  <Link to={`/dashboard/updateItem/${item._id}`}><button className="btn  btn-ghost btn-md bg-orange-400 text-xl text-white">
                     <FaEdit />
-                  </button>
+                  </button></Link>
                 </th>
                 <th>
                   <button
