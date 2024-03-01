@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import useCart from "../../../Hooks/useCart";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckOutForm = () => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId,setTransactionId]=useState("")
-  const [cart] = useCart();
+  const [cart,refetch] = useCart();
   const {user}=useAuth();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0); //reducing the price
   const stripe = useStripe();
@@ -67,6 +68,29 @@ const CheckOutForm = () => {
       if(paymentIntent.status === 'succeeded'){
         console.log('Transaction Id :',paymentIntent.id);
         setTransactionId(paymentIntent.id);
+        
+        //now payment save in db
+        const payment={
+          email:user.email,
+          price:totalPrice,
+          transactionId:paymentIntent.id,
+          date:new Date(), //convet this into utc time
+          cartIds:cart.map(item=>item._id),
+          menuIds:cart.map(item=>item.menuItemId),
+          status:'pending'
+        }
+        const res=await axiosSecure.post('/payments',payment);
+        console.log(res.data)
+        refetch();
+        if (res.data?.paymentResult?.insertedId) {
+          Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Thank you",
+              showConfirmButton: false,
+              timer: 1500
+          });
+        }
       }
     }
 
