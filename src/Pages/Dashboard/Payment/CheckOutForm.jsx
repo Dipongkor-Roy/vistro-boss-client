@@ -7,7 +7,7 @@ import useAuth from "../../../Hooks/useAuth";
 const CheckOutForm = () => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [transitionId,setTransitionId]=useState("")
+  const [transactionId,setTransactionId]=useState("")
   const [cart] = useCart();
   const {user}=useAuth();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0); //reducing the price
@@ -15,12 +15,16 @@ const CheckOutForm = () => {
   const elements = useElements();
   const axiosSecure = UseAxiosSecure();
   useEffect(() => {
+   if(totalPrice>0){
     axiosSecure
-      .post("/create-payment-intent", { price: totalPrice })
-      .then((res) => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
+    .post("/create-payment-intent", { price: totalPrice })
+    .then((res) => {
+      
+      console.log(res.data.clientSecret);
+     
+      setClientSecret(res.data.clientSecret);
+    });
+   }
   }, [axiosSecure, totalPrice]);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,7 +34,7 @@ const CheckOutForm = () => {
 
     const card = elements.getElement(CardElement);
 
-    if (card == null) {
+    if (card === null) {
       return;
     }
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -40,29 +44,29 @@ const CheckOutForm = () => {
 
     if (error) {
       console.log("error", error);
-      setError(error);
+      setError(error.message);
     } else {
       console.log("PaymentMethod", paymentMethod);
       setError("");
     }
-    //confirm payment
-    const {paymentIntent,error:confirmError}=await stripe.confirmCardPayment(clientSecret,{
-      payment_method:{
-        card:card,
-        billing_details:{
-          email:user?.email || "anonymous",
-          name:user?.displayName || "anonymous"
-        }
+    // confirm payment
+    const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+          card: card,
+          billing_details: {
+              email: user?.email || 'anonymous',
+              name: user?.displayName || 'anonymous'
+          }
       }
-    })
+  })
     if(confirmError){
       console.log('confirm error')
     }
     else{
       console.log('Payment Intent :',paymentIntent)
-      if(paymentIntent.status==='succeeded'){
-        console.log('Transion Id :',paymentIntent.id);
-        setTransitionId(paymentIntent.id)
+      if(paymentIntent.status === 'succeeded'){
+        console.log('Transaction Id :',paymentIntent.id);
+        setTransactionId(paymentIntent.id);
       }
     }
 
@@ -94,7 +98,7 @@ const CheckOutForm = () => {
       </button>
       <p className="mt-3 text-red-600">{error.message}</p>
       {
-        transitionId && <p className="text-xl text-green-500">Your Transition Id: {transitionId}</p>
+       transactionId && <p className="text-xl text-green-500">Your Transition Id: {transactionId}</p>
       }
     </form>
   );
