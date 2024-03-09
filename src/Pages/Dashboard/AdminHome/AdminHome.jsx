@@ -10,6 +10,7 @@ const AdminHome = () => {
     queryKey:['admin-stats'],
     queryFn:async()=>{
       const result= await axiosSecure.get('/admin-stats');
+      // console.log(result.data)
       return result.data;
     }
   })
@@ -26,7 +27,7 @@ const AdminHome = () => {
      <FaDollarSign className="text-3xl"/>
     </div>
     <div className="stat-title">Revenue</div>
-    <div className="stat-value">${stats.revenue}</div>
+    <div className="stat-value">${stats?.revenue ?? "N/A"}</div>
     <div className="stat-desc">Jan 1st - Feb 1st</div>
   </div>
   
@@ -35,7 +36,7 @@ const AdminHome = () => {
       <FaUser className="text-3xl"/>
     </div>
     <div className="stat-title">Users</div>
-    <div className="stat-value">{stats.users ?? 'N/A'}</div>
+    <div className="stat-value">{stats?.users ?? 'N/A'}</div>
     <div className="stat-desc">↗︎ 400 (22%)</div>
   </div>
   <div className="stat">
@@ -43,7 +44,7 @@ const AdminHome = () => {
      <FaBook className="text-3xl"/>
     </div>
     <div className="stat-title">Menu Items</div>
-    <div className="stat-value">{stats.menuItems??'N/A'}</div>
+    <div className="stat-value">{stats?.menuItems??'N/A'}</div>
     <div className="stat-desc">↗︎ 400 (22%)</div>
   </div>
   
@@ -52,7 +53,7 @@ const AdminHome = () => {
     <FaCartPlus className="text-3xl"/>
     </div>
     <div className="stat-title">Orders</div>
-    <div className="stat-value">{stats.orders}</div>
+    <div className="stat-value">{stats?.orders??'N/A'}</div>
     <div className="stat-desc">↘︎ 90 (14%)</div>
   </div>
   
