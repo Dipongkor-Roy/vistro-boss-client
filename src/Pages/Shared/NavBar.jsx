@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthCont";
 import { FaShoppingCart } from 'react-icons/fa';
 import useCart from "../../Hooks/useCart";
+import useAdmin from "../../Hooks/useAdmin";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart]=useCart();
+  const [isAdmin]=useAdmin();
   const handleLogOut = () => {
     logOut().then(() => {});
   };
@@ -15,41 +17,65 @@ const NavBar = () => {
     <>
       <li>
         <Link to="/">
-          <a>Home</a>
+          <p>Home</p>
         </Link>
       </li>
       <li>
         <Link to="/menu">
-          <a>Menu</a>
+          <p>Menu</p>
         </Link>
       </li>
       <li>
         <Link to="/order/salad">
-          <a>Order</a>
+          <p>Order</p>
         </Link>
       </li>
+      {/* conditional */}
+      {
+        user && isAdmin && <li>
+        <Link to="/dashboard/adminHome">
+        <p>Dashboard</p>
+        </Link>
+      </li>
+      }
+      {/* for general user */}
+      {
+        user && !isAdmin && <li>
+        <Link to="/dashboard/userHome">
+          <p>Dashboard</p>
+        </Link>
+      </li>
+      }
+      {
+        user && isAdmin && <li>
+        <Link to="/dashboard/adminHome">
+          <p>Order</p>
+        </Link>
+      </li>
+      }
+      
       <li>
         <Link to="/dashboard/mycart">
-          <a>
+          <p>
             <button className="btn btn-xs">
              <FaShoppingCart></FaShoppingCart>
               <div className="badge badge-secondary">+{cart?.length || 0}</div>
             </button>
-          </a>
+          </p>
         </Link>
       </li>
 
       {user ? (
         <>
           <li onClick={handleLogOut}>
-            <a>LogOut</a>
+            <p>LogOut</p>
           </li>
         </>
       ) : (
         <>
           <li>
             <Link to="/logIn">
-              <a>Login</a>
+              <p>Login</p>
             </Link>
           </li>
         </>

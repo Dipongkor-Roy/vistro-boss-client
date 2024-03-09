@@ -4,9 +4,11 @@ import useCart from "../../../Hooks/useCart";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = () => {
   const [error, setError] = useState("");
+  const navigate=useNavigate();
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId,setTransactionId]=useState("")
   const [cart,refetch] = useCart();
@@ -90,6 +92,8 @@ const CheckOutForm = () => {
               showConfirmButton: false,
               timer: 1500
           });
+
+          navigate('/dashboard/paymentHistory');
         }
       }
     }
