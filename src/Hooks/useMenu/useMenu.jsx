@@ -9,7 +9,7 @@ const axiosPublic=UseAxiosPublic();
   // const [menu, setMenu] = useState([]);
   // const [loading, setLoading] = useState(true);
   // useEffect(() => {
-  //   fetch("http://localhost:2000/menu")
+  //   fetch("https://vistro-boss-server.vercel.app/menu")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setMenu(data);

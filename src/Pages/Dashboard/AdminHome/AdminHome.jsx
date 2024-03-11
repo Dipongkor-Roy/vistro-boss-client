@@ -60,6 +60,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 const pieChartData= chartData.map(data=>{
   return {name:data.category,value:data.revenue}
 })
+
   return (
     <>
     <div>
@@ -104,7 +105,7 @@ const pieChartData= chartData.map(data=>{
   </div>
   
 </div>
-<div className="flex">
+<div className="flex mt-[35px]">
 <div className="w-1/2">
 <BarChart
       width={500}

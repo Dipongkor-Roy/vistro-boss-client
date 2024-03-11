@@ -84,7 +84,7 @@ export const router = createBrowserRouter([
       {
         path:'updateItem/:id',
         element:<AdminRoutes><UpdateItems/></AdminRoutes>,
-        loader:({params})=>fetch(`http://localhost:2000/menu/${params.id}`)
+        loader:({params})=>fetch(`https://vistro-boss-server.vercel.app/menu/${params.id}`)
       },
       {
         path:'users',

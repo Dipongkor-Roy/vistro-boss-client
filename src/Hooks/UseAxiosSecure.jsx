@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:2000/',
+  baseURL: 'https://vistro-boss-server.vercel.app/',
 });
 
 const UseAxiosSecure = () => {

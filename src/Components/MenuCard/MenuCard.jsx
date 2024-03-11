@@ -15,7 +15,7 @@ const MenuCard = ({ item }) => {
    
     if (user && user.email) {
       const cartItem={menuItemId:_id,name,image,price, email: user.email}
-      fetch("http://localhost:2000/carts",{
+      fetch("https://vistro-boss-server.vercel.app/carts",{
         method:'POST',
         headers:{  
           'Content-Type': 'application/json'

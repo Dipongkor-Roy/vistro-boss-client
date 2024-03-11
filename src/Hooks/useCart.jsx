@@ -7,7 +7,7 @@ const useCart = () => {
     const { refetch, data:cart=[]} = useQuery({
         queryKey: ['cart',user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:2000/carts?email=${user?.email}`)
+            const res = await fetch(`https://vistro-boss-server.vercel.app/carts?email=${user?.email}`)
             return res.json();
       },
       
